@@ -18,7 +18,7 @@
 $(call inherit-product, build/target/product/embedded.mk)
 
 # Inherit some common PitchBlack stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/batik/config/common.mk)
 
 # Charger
 PRODUCT_PACKAGES += \
