@@ -1,11 +1,11 @@
 #
-# Copyright (C) 2016 The OmniRom Project
+# Copyright (C) 2017 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,16 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+LOCAL_PATH := device/asus/X01AD
+
 # OTA Assert
 TARGET_OTA_ASSERT_DEVICE := X01A_1,X01AD_1,X01A,X01AD,ASUS_X01A_1,ASUS_X01AD_1,ASUS_X01AD,ASUS_X01A
-
-# Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := sdm632
-
-# Platform
-TARGET_BOARD_PLATFORM := sdm632
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
-TARGET_BOARD_SUFFIX := _64
 
 # Architecture
 TARGET_ARCH := arm64
@@ -39,6 +34,14 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 
 TARGET_USES_64_BIT_BINDER := true
 
+# Platform
+TARGET_BOARD_PLATFORM := sdm632
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
+TARGET_BOARD_SUFFIX := _64
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := sdm632
+
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78af000 androidboot.usbconfigfs=true loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
@@ -47,6 +50,15 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/zImage
+
+# Full disk encryption
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
+TARGET_HW_DISK_ENCRYPTION := true
+PLATFORM_SECURITY_PATCH := 2029-10-01
+PLATFORM_VERSION := 16.1.0
+
+# Keymaster
+TARGET_PROVIDES_KEYMASTER := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
@@ -61,23 +73,14 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
-# Init
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-
-# Full disk encryption
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
-TARGET_HW_DISK_ENCRYPTION := true
-PLATFORM_SECURITY_PATCH := 2029-10-01
-PLATFORM_VERSION := 16.1.0
-
-# Keymaster
-TARGET_PROVIDES_KEYMASTER := true
-
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
 
 # TWRP Configuration
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -99,22 +102,3 @@ TW_USE_TOOLBOX := true
 
 #Ignore Missing Dependencies
 ALLOW_MISSING_DEPENDENCIES=true
-
-
-#SHRP_Variables
-SHRP_PATH := device/asus/X01AD
-SHRP_MAINTAINER := soul
-SHRP_DEVICE_CODE := X01AD
-SHRP_EDL_MODE := 1
-SHRP_EXTERNAL := /external_sd
-SHRP_INTERNAL := /sdcard
-SHRP_OTG := /usb-otg
-SHRP_FLASH := 1
-SHRP_FLASH_MAX_BRIGHTNESS := 100
-SHRP_REC := /dev/block/bootdevice/by-name/recovery
-SHRP_REC_TYPE := SAR
-SHRP_DEVICE_TYPE := A_Only
-SHRP_STATUSBAR_RIGHT_PADDING := 48
-SHRP_STATUSBAR_LEFT_PADDING := 48
-SHRP_EXPRESS := true
-SHRP_NOTCH := true
